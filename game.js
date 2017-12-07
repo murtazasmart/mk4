@@ -90,3 +90,8 @@ fight = () => {
 
 setUpWarriors();
 fight();
+module.exports = {
+  Warrior,
+  Weapon,
+  Armor
+}
