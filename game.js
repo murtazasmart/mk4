@@ -10,6 +10,15 @@ function testableAttack(armorBonus, skill, rollDice, strength) {
   return warriorPoints >= enemyPower;
 }
 
+function testableCalculateBonus(gear) {
+  var armorBonus = 0;
+  _.each(this.gear, (item) => {
+    if (item instanceof Armor) {
+      this.armorBonus += item.bonus
+    }
+  });
+}
+
 class Warrior {
   constructor(name, strength, skill, gear) {
     this.name = name;
@@ -111,5 +120,6 @@ module.exports = {
   Weapon,
   Armor,
   testableAttack,
-  getWarriors
+  getWarriors,
+  testableCalculateBonus
 }

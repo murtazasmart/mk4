@@ -9,7 +9,8 @@ const {
   Weapon,
   Armor,
   testableAttack,
-  getWarriors
+  getWarriors,
+  testableCalculateBonus
 } = require("./game");
 
 describe("Test", () => {
@@ -36,9 +37,9 @@ describe("Testing isolation of Warrior Class", () => {
     expect(scorpion.armorBonus).to.be.equal(6);
   })
 
-  // it("Strength should be equal to 7", () => {
-  //   expect(scorpion.armorBonus).to.be.equal(7);
-  // })
+  it("Strength should be equal to 7", () => {
+    expect(scorpion.strength).to.be.equal(7);
+  })
 
   // it("should ")
   afterEach(() => {
@@ -84,42 +85,89 @@ describe("Testing Warrior function", () => {
   })
 })
 
-// describe("Test Armour class", () => {
-//   describe("Test armorbonus field", () => {
-//     it("Bonus shouldnt be 0", () => {
-//       var spineArmor = new Armor("Spine Armor", 6);
-//       var spineChain = new Weapon("Spine Chain", 5);
-//       Scorpion = new Warrior("Scorpion", 7, 7, [spineArmor, spineChain]);
-//       // console.log(Scorpion.armorBonus);
-//       expect(Scorpion.armorBonus).not.be.equal(0);
-//     });
-//   });
+describe(
 
-//   describe("rollDice function", () => {
-//     it("should not return 0", () => {
-//       for (i = 1; i <= 1000; i++) {
-//         var num = Warrior.rollDice(i, 3)
-//         // console.log(num)
-//         expect(num).be.not.equal(0);
-//       }
+  "Calculate bonus function", () => {
+    var spineArmor
+    var spineChain
+    var scorpion
+    beforeEach(() => {
+      spineArmor = new Armor("Spine Armor", 6);
+      spineChain = new Weapon("Spine Chain", 5);
+      scorpion = new Warrior("Scorpion", 7, 7, [spineArmor, spineChain]);
+    })
 
-//     })
+    it("Calculating bonus", () => {
+      scorpion.calculateBonus([spineArmor, spineChain]);
+    })
+    afterEach(() => {
+      spineArmor = undefined;
+      spineChain = undefined;
+      scorpion = undefined;
 
-//     it("should be finite number", () => {
-//       for (i = 1; i <= 1000; i++) {
-//         var num = Warrior.rollDice(i, 3)
-//         expect(_.isFinite(num)).should.be.true;
+    })
+  })
 
-//       }
+describe("Calculate bonus function", () => {
+    var spineArmor
+    var spineChain
+    var scorpion
+    beforeEach(() => {
+      spineArmor = new Armor("Spine Armor", 6);
+      spineChain = new Weapon("Spine Chain", 5);
+      scorpion = new Warrior("Scorpion", 7, 7, [spineChain]);
+    })
 
-//     })
+    it("Add gear func", () => {
+      scorpion.addGear([spineArmor]);
+      // expect(scorpion.gear[1]).to.be.an.equal([{
+      //   name: 'Spine Armor', bonus: 6
+      // }]);
+    })
+    afterEach(() => {
+      spineArmor = undefined;
+      spineChain = undefined;
+      scorpion = undefined;
 
-//     it("should be a valid number", () => {
-//       for (i = 1; i <= 1000; i++) {
-//         var num = Warrior.rollDice(i, 3)
-//         expect(isNaN(num)).should.be.not.true;
-//       }
-//     })
+    })
+  })
 
-//   })
-// });
+describe("Test Armour class", () => {
+  describe("Test armorbonus field", () => {
+    it("Bonus shouldnt be 0", () => {
+      var spineArmor = new Armor("Spine Armor", 6);
+      var spineChain = new Weapon("Spine Chain", 5);
+      Scorpion = new Warrior("Scorpion", 7, 7, [spineArmor, spineChain]);
+      // console.log(Scorpion.armorBonus);
+      expect(Scorpion.armorBonus).not.be.equal(0);
+    });
+  });
+
+  describe("rollDice function", () => {
+    it("should not return 0", () => {
+      for (i = 1; i <= 1000; i++) {
+        var num = Warrior.rollDice(i, 3)
+        // console.log(num)
+        expect(num).be.not.equal(0);
+      }
+
+    })
+
+    // it("should be finite number", () => {
+    //   for (i = 1; i <= 1000; i++) {
+    //     var num = Warrior.rollDice(i, 3)
+    //     expect(_.isFinite(num)).should.be.true;
+
+    //   }
+
+    // })
+
+    it("should be a valid number", () => {
+      for (i = 1; i <= 1000; i++) {
+        var num = Warrior.rollDice(i, 3)
+        expect(isNaN(num)).should.be.not.true;
+      }
+    })
+
+  })
+});
