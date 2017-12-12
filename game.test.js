@@ -54,8 +54,12 @@ describe("Testing Warrior function", () => {
     scorpion = new Warrior("Scorpion", 7, 7, [spineArmor, spineChain]);
   })
 
-  it("should return true", () => {
+  it("warrior wins should return true", () => {
     expect(testableAttack(7, 5, 12, 11)).to.be.true;
+  })
+
+  it("enemy wins should return false", () => {
+    expect(testableAttack(7, 5, 12, 4)).to.be.false;
   })
 
   afterEach(() => {
