@@ -61,6 +61,8 @@ class Warrior {
     var enemyPower = 10 + enemy.armorBonus + enemy.skill;
     return warriorPoints >= enemyPower;
   }
+
+
 }
 
 class Armor {
@@ -96,11 +98,18 @@ fight = () => {
   }
 }
 
+const getWarriors = (callback) => {
+  setTimeout(function () {
+    callback(null, require("./database.json"));
+  }, 50)
+}
+
 setUpWarriors();
 fight();
 module.exports = {
   Warrior,
   Weapon,
   Armor,
-  testableAttack
+  testableAttack,
+  getWarriors
 }

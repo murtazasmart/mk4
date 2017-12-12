@@ -8,7 +8,8 @@ const {
   Warrior,
   Weapon,
   Armor,
-  testableAttack
+  testableAttack,
+  getWarriors
 } = require("./game");
 
 describe("Test", () => {
@@ -27,20 +28,33 @@ describe("Testing isolation of Warrior Class", () => {
     scorpion = new Warrior("Scorpion", 7, 7, [spineArmor, spineChain]);
   })
 
-  it("should initalize warrior successfully", () => {
+  it("Should initalize warrior successfully", () => {
     expect(scorpion).to.be.an.instanceof(Warrior);
   })
 
-  it("checks if initialized armour bonus is equal to 6", () => {
+  it("Armour bonus should be equal to 6", () => {
     expect(scorpion.armorBonus).to.be.equal(6);
   })
 
-  it("should ")
+  // it("Strength should be equal to 7", () => {
+  //   expect(scorpion.armorBonus).to.be.equal(7);
+  // })
+
+  // it("should ")
   afterEach(() => {
     spineArmor = undefined;
     spineChain = undefined;
     scorpion = undefined;
 
+  })
+})
+
+describe("Check database function", () => {
+  it("check if data exists", (done) => {
+    getWarriors((err, res) => {
+      expect(res[0].name).to.be.equal("Goro");
+      done();
+    });
   })
 })
 
@@ -54,11 +68,11 @@ describe("Testing Warrior function", () => {
     scorpion = new Warrior("Scorpion", 7, 7, [spineArmor, spineChain]);
   })
 
-  it("warrior wins should return true", () => {
+  it("Warrior wins should return true", () => {
     expect(testableAttack(7, 5, 12, 11)).to.be.true;
   })
 
-  it("enemy wins should return false", () => {
+  it("Enemy wins should return false", () => {
     expect(testableAttack(7, 5, 12, 4)).to.be.false;
   })
 
