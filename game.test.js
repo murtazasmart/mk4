@@ -27,7 +27,7 @@ describe("Testing isolation of Warrior Class", () => {
   })
 
   it("should initalize warrior successfully", () => {
-    expect(scorpion instanceof Object).should.be.true;
+    expect(scorpion).to.be.an.instanceof(Warrior);
   })
 
   it("checks if initialized armour bonus is equal to 6", () => {
