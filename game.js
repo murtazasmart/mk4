@@ -2,6 +2,14 @@ _ = require("lodash");
 var Scorpion;
 var LiuKang;
 
+function testableAttack(armorBonus, skill, rollDice, strength) {
+  var roll = rollDice;
+  roll += strength;
+  var warriorPoints = _.clamp(roll, 1, 25);
+  var enemyPower = 10 + armorBonus + skill;
+  return warriorPoints >= enemyPower;
+}
+
 class Warrior {
   constructor(name, strength, skill, gear) {
     this.name = name;
@@ -93,5 +101,6 @@ fight();
 module.exports = {
   Warrior,
   Weapon,
-  Armor
+  Armor,
+  testableAttack
 }

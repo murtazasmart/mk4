@@ -7,7 +7,8 @@ _ = require("lodash");
 const {
   Warrior,
   Weapon,
-  Armor
+  Armor,
+  testableAttack
 } = require("./game");
 
 describe("Test", () => {
@@ -33,6 +34,30 @@ describe("Testing isolation of Warrior Class", () => {
   it("checks if initialized armour bonus is equal to 6", () => {
     expect(scorpion.armorBonus).to.be.equal(6);
   })
+
+  it("should ")
+  afterEach(() => {
+    spineArmor = undefined;
+    spineChain = undefined;
+    scorpion = undefined;
+
+  })
+})
+
+describe("Testing Warrior function", () => {
+  var spineArmor
+  var spineChain
+  var scorpion
+  beforeEach(() => {
+    spineArmor = new Armor("Spine Armor", 6);
+    spineChain = new Weapon("Spine Chain", 5);
+    scorpion = new Warrior("Scorpion", 7, 7, [spineArmor, spineChain]);
+  })
+
+  it("should return true", () => {
+    expect(testableAttack(7, 5, 12, 11)).to.be.true;
+  })
+
   afterEach(() => {
     spineArmor = undefined;
     spineChain = undefined;
