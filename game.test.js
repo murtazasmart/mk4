@@ -17,7 +17,7 @@ describe("Test", () => {
 })
 
 describe("Test Armour class", () => {
-  describe("Test calculatebonus function", () => {
+  describe("Test armorbonus field", () => {
     it("Bonus shouldnt be 0", () => {
       var spineArmor = new Armor("Spine Armor", 6);
       var spineChain = new Weapon("Spine Chain", 5);
@@ -26,4 +26,32 @@ describe("Test Armour class", () => {
       expect(Scorpion.armorBonus).not.be.equal(0);
     });
   });
+
+  describe("rollDice function", () => {
+    it("should not return 0", () => {
+      for (i = 1; i <= 1000; i++) {
+        var num = Warrior.rollDice(i, 3)
+        // console.log(num)
+        expect(num).be.not.equal(0);
+      }
+
+    })
+
+    it("should be finite number", () => {
+      for (i = 1; i <= 1000; i++) {
+        var num = Warrior.rollDice(i, 3)
+        expect(_.isFinite(num)).should.be.true;
+        
+      }
+      
+    })
+
+    it("should be a valid number", () => {
+      for (i = 1; i <= 1000; i++) {
+        var num = Warrior.rollDice(i, 3)
+        expect(isNaN(num)).should.be.not.true;
+      }
+    })
+
+  })
 });
